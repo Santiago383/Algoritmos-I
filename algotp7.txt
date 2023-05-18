@@ -183,11 +183,12 @@ PROCEDURE divisores (num:integer);
 		i:=0;
 		
 		for i:=1 to (num div 2) do
-			begin
+		begin
 			if (num mod i = 0) then
+			begin
 				writeln(i);
-				
-			end;
+			end;		
+		end;
 	end;
 
 
