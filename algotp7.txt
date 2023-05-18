@@ -39,7 +39,7 @@ BEGIN
 	
 	while (palabra <> fin) do
 	begin
-		if (palabraAdecuada(palabra)=true) then
+		if (palabraAdecuada(palabra)) then
 			writeln(palabra,' comienza con consonante y termina con vocal')
 		else	
 			writeln(palabra,' no comienza con consonante y termina con vocal');
@@ -158,7 +158,7 @@ BEGIN
 	write('Ingrese año: ');
 	readln(year);
 	
-	if (fechaValida(dia,mes,year)=true) then
+	if (fechaValida(dia,mes,year)) then
 		writeln(dia,'/',mes,'/',year)
 	else
 		writeln(dia,'/,mes,'/',year,' no es un formato de fecha valido');
