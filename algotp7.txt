@@ -122,7 +122,7 @@ FUNCTION fechaValida (d, m, a:string):boolean;
 		
 		if (length(a)=4) then	{if para quedarme solo con los strings de cuatro caracteres}
 		begin
-			case a of	{case para chequear que el año sea "razonable" o sea que permita desde el 1000 hasta el 2999}
+			case a of	{case para chequear que el año sea "razonable" o sea que no se pase del 2999}
 			begin
 			a[1]='1' or a[1]='2': 
 				a1:=true;
