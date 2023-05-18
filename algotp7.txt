@@ -62,80 +62,84 @@ VAR
 FUNCTION fechaValida (d, m, a:string):boolean;
 
 	var
-		dValido, mValido, aValido:boolean;
+		dValido, mValido, aValido, a1, a2, a3, a4:boolean;   {a1, 2, 3 y 4: variables auxiliares para chequear si los caracteres del año son validos con un case}
 		
 	begin
+	
+		dValido:=false;
+		mValido:=false;
+		aValido:=false;
+		a1:=false;
+		a2:=false;
+		a3:=false;
+		a4:=false;
 		
 		if (length(d)=2) then
+		begin
 			case d of
 			begin
 			d[1]='0': 
-				if (d[2]='1' or d[2]='2'or d[2]='3'or d[2]='4'or d[2]='5'or d[2]='6'or d[2]='7'or d[2]='8'or d[2]='9')then
-					dValido:=true
-				else	
-					dValido:=false;
+				if (d[2]='1' or d[2]='2' or d[2]='3' or d[2]='4' or d[2]='5' or d[2]='6' or d[2]='7' or d[2]='8' or d[2]='9') then
+				begin
+					dValido:=true;
 				end;
+
 			d[1]='1' or d[1]='2':
-				if (d[2]='0'or d[2]='1' or d[2]='2'or d[2]='3'or d[2]='4'or d[2]='5'or d[2]='6'or d[2]='7'or d[2]='8'or d[2]='9')then
-					dValido:=true
-				else	
-					dValido:=false;
+				if (d[2]='0' or d[2]='1' or d[2]='2' or d[2]='3' or d[2]='4' or d[2]='5' or d[2]='6' or d[2]='7' or d[2]='8' or d[2]='9') then
+				begin
+					dValido:=true;
 				end;
+
 			d[1]='3':
 				if (d[2]='0' or d[2]='1') then
-					dValido:=true
-				else
-					dValido:=false;
-				end;
+				begin
+					dValido:=true;
+				end
 			else
 				dValido:=false;
 			end;
-		else
-			dValido:=false;
 		end;
 		
 		if (length(m)=2) then
+		begin
 			case m of
 			begin
 			m[1]='0':
-				if (m[2]='1' or m[2]='2'or m[2]='3'or m[2]='4'or m[2]='5'or m[2]='6'or m[2]='7'or m[2]='8'or m[2]='9') then
-					mValido:=true
-				else	
-					mValido:=false;
+				if (m[2]='1' or m[2]='2' or m[2]='3' or m[2]='4' or m[2]='5' or m[2]='6' or m[2]='7' or m[2]='8' or m[2]='9') then
+				begin
+					mValido:=true;
 				end;
+
 			m[1]='1':
 				if (m[2]='0' or m[2]='1' or m[2]='2') then
-					mValido:=true
-				else	
-					mValido:=false;
-				end;
+				begin
+					mValido:=true;
+				end
 			else	
 				mValido:=false;
-			end
-		else
-			mValido:=false;
+			end;
 		end;
 		
 		if (length(a)=4) then
-			if (a[1]='1' or a[1]='2') then
-				if (a[2]='0' or a[2]='1'or a[2]='2'or a[2]='3'or a[2]='4'or a[2]='5'or a[2]='6'or a[2]='7'or a[2]='8'or a[2]='9') then
-					if (a[3]='0' or a[3]='1'or a[3]='2'or a[3]='3'or a[3]='4'or a[3]='5'or a[3]='6'or a[3]='7'or a[3]='8'or a[3]='9') then
-						if (a[4]='0' or a[4]='1'or a[4]='2'or a[4]='3'or a[4]='4'or a[4]='5'or a[4]='6'or a[4]='7'or a[4]='8'or a[4]='9') then
-							aValido:=true
-						else	
-							aValido:=false;
-						end
-					else	
-						aValido:=false;
-					end
-				else	
-					aValido:=false;
-				end
-			else	
-				aValido:=false;
-			end
-		else	
-			aValido:=false;
+		begin
+			case a of
+			begin
+			a[1]='1' or a[1]='2': 
+				a1:=true;
+			a[2]='0' or a[2]='1' or a[2]='2' or a[2]='3' or a[2]='4' or a[2]='5' or a[2]='6' or a[2]='7' or a[2]='8' or a[2]='9': 
+				a2:=true;
+			a[3]='0' or a[3]='1' or a[3]='2' or a[3]='3' or a[3]='4' or a[3]='5' or a[3]='6' or a[3]='7' or a[3]='8' or a[3]='9':
+				a3:=true;
+			a[4]='0' or a[4]='1' or a[4]='2' or a[4]='3' or a[4]='4' or a[4]='5' or a[4]='6' or a[4]='7' or a[4]='8' or a[4]='9':
+				a4:=true
+			else
+				aValido:=false;	
+			end;
+		end;
+		
+		if (a1:=true and a2:=true and a3:=true and a4:=true) then
+		begin
+			aValido:=true;
 		end;
 			
 		if (dValido=true and mValido=true and aValido=true) then
@@ -151,7 +155,7 @@ BEGIN
 	readln(day);
 	write('Ingrese mes: ');
 	readln(month);
-	write('Ingrese a*o: ');
+	write('Ingrese año: ');
 	readln(year);
 	
 	if (fechaValida(day,month,year)=true) then
