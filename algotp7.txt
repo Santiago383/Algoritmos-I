@@ -1,0 +1,196 @@
+PROGRAM tp7e10;
+
+VAR
+	plabra:string;
+	
+FUNCTION palabraAdecuada (p:string):boolean;
+	
+	var
+		primeraCons, ultimaVoc:boolean;
+	
+	begin
+		primeraCons:=false;
+		ultimaVoc:=false;
+		
+		if (p[1] = 'a' or p[1] = 'e' or p[1] = 'i' or p[1] = 'o' or p[1] = 'u') then
+		
+			primeraCons:=false
+		else
+			if (p[length(p)] = 'a' or p[length(p)] = 'e' or p[length(p)] = 'i' or p[length(p)] = 'o' or p[length(p)] = 'u') then
+			
+				primeraCons:=true;
+				ultimaVoc:=true
+			else
+				primeraCons:=true;
+				ultimaVoc:=false;
+			end;
+		end;
+		if (primeraCons=true and ultimaVoc:=true)then
+				
+			palabraAdecuada:=true
+		else	
+			palabraAdecuada:=false;
+		end;
+	end;
+
+BEGIN
+
+	readln(palabra);
+	
+	while (palabra <> fin) do
+	begin
+		if (palabraAdecuada(palabra):=true) then
+			writeln(palabra,' comienza con consonante y termina con vocal')
+		else	
+			writeln(palabra,' no comienza con consonante y termina con vocal');
+		end;
+		read(palabra);
+	
+	end;
+
+
+END.
+
+
+
+
+PROGRAM tp7e13;
+
+VAR
+	day, month, year:string;
+	
+FUNCTION fechaValida (d, m, a:string):boolean;
+
+	var
+		dValido, mValido, aValido:boolean;
+		
+	begin
+		
+		if (length(d)=2) then
+			case d of
+			begin
+			d[1]='0': 
+				if (d[2]='1' or d[2]='2'or d[2]='3'or d[2]='4'or d[2]='5'or d[2]='6'or d[2]='7'or d[2]='8'or d[2]='9')then
+					dValido:=true
+				else	
+					dValido:=false;
+				end;
+			d[1]='1' or d[1]='2':
+				if (d[2]='0'or d[2]='1' or d[2]='2'or d[2]='3'or d[2]='4'or d[2]='5'or d[2]='6'or d[2]='7'or d[2]='8'or d[2]='9')then
+					dValido:=true
+				else	
+					dValido:=false;
+				end;
+			d[1]='3':
+				if (d[2]='0' or d[2]='1') then
+					dValido:=true
+				else
+					dValido:=false;
+				end;
+			else
+				dValido:=false;
+			end;
+		else
+			dValido:=false;
+		end;
+		
+		if (length(m)=2) then
+			case m of
+			begin
+			m[1]='0':
+				if (m[2]='1' or m[2]='2'or m[2]='3'or m[2]='4'or m[2]='5'or m[2]='6'or m[2]='7'or m[2]='8'or m[2]='9') then
+					mValido:=true
+				else	
+					mValido:=false;
+				end;
+			m[1]='1':
+				if (m[2]='0' or m[2]='1' or m[2]='2') then
+					mValido:=true
+				else	
+					mValido:=false;
+				end;
+			else	
+				mValido:=false;
+			end
+		else
+			mValido:=false;
+		end;
+		
+		if (length(a)=4) then
+			if (a[1]='1' or a[1]='2') then
+				if (a[2]='0' or a[2]='1'or a[2]='2'or a[2]='3'or a[2]='4'or a[2]='5'or a[2]='6'or a[2]='7'or a[2]='8'or a[2]='9') then
+					if (a[3]='0' or a[3]='1'or a[3]='2'or a[3]='3'or a[3]='4'or a[3]='5'or a[3]='6'or a[3]='7'or a[3]='8'or a[3]='9') then
+						if (a[4]='0' or a[4]='1'or a[4]='2'or a[4]='3'or a[4]='4'or a[4]='5'or a[4]='6'or a[4]='7'or a[4]='8'or a[4]='9') then
+							aValido:=true
+						else	
+							aValido:=false;
+						end
+					else	
+						aValido:=false;
+					end
+				else	
+					aValido:=false;
+				end
+			else	
+				aValido:=false;
+			end
+		else	
+			aValido:=false;
+		end;
+			
+		if (dValido=true and mValido=true and aValido=true) then
+			fechaValida:=true
+		else	
+			fechaValida:=false;
+		end;	
+	end;
+
+	
+BEGIN
+	write('Ingrese dia: ');
+	readln(day);
+	write('Ingrese mes: ');
+	readln(month);
+	write('Ingrese a*o: ');
+	readln(year);
+	
+	if (fechaValida(day,month,year)=true) then
+		writeln('la fecha que ingreso es ',day,'/',month,'/',year)
+	else
+		writeln('el formato de la fecha ingresada es invalido');
+	end;	
+
+END.
+
+
+
+
+PROGRAM tp7e17;
+
+VAR
+	n:integer;
+
+PROCEDURE divisores;
+
+	var
+		i:integer;
+	
+	begin
+		i:=0;
+		
+		for i:=1 to (n div 2) do
+			begin
+			if (n mod i = 0) then
+				writeln(i);
+				
+			end;
+	end;
+
+
+
+
+BEGIN
+	readln(n);
+	divisores;
+
+END.
