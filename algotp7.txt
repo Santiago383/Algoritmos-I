@@ -39,7 +39,7 @@ BEGIN
 	
 	while (palabra <> fin) do
 	begin
-		if (palabraAdecuada(palabra):=true) then
+		if (palabraAdecuada(palabra)=true) then
 			writeln(palabra,' comienza con consonante y termina con vocal')
 		else	
 			writeln(palabra,' no comienza con consonante y termina con vocal');
