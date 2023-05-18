@@ -53,118 +53,159 @@ END.
 
 
 
-
 PROGRAM tp7e13;
 
 VAR
-	dia, mes, year:string;
+	fecha:string;
 	
-FUNCTION fechaValida (d, m, a:string):boolean;
+FUNCTION fechaValida (f:string):boolean;
 
 	var
-		dValido, mValido, aValido, a1, a2, a3, a4:boolean;   {a1, 2, 3 y 4: variables auxiliares para chequear si los caracteres del año son validos con un case}
+		f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, longitudAdecuada: boolean; {variables auxiliares para chequear que cada caracter sea valido}
 		
 	begin
+		f1:=false;	{las inicializo a todas como falsas para que si no se cumple algo de lo que sigue la fecha no resulte valida}
+		f2:=false;
+		f3:=false;
+		f4:=false;
+		f5:=false;
+		f6:=false;
+		f7:=false;
+		f8:=false;
+		f9:=false;
+		f10:=false;
+		longitudAdecuada:=false;
 	
-		dValido:=false;
-		mValido:=false;
-		aValido:=false;
-		a1:=false;
-		a2:=false;
-		a3:=false;
-		a4:=false;
-		
-		if (length(d)=2) then	{if para quedarme solo con los strings de dos caracteres}
+		if (length(f) = 10) then	{reviso que la longitud del string sea 10 caracteres}
 		begin
-			case d of	{case para chequear que el dia este entre 01 y 31}
-			begin
-			d[1]='0': 
-				if (d[2]='1' or d[2]='2' or d[2]='3' or d[2]='4' or d[2]='5' or d[2]='6' or d[2]='7' or d[2]='8' or d[2]='9') then
-				begin
-					dValido:=true;
-				end;
-
-			d[1]='1' or d[1]='2':
-				if (d[2]='0' or d[2]='1' or d[2]='2' or d[2]='3' or d[2]='4' or d[2]='5' or d[2]='6' or d[2]='7' or d[2]='8' or d[2]='9') then
-				begin
-					dValido:=true;
-				end;
-
-			d[1]='3':
-				if (d[2]='0' or d[2]='1') then
-				begin
-					dValido:=true;
-				end
-			else
-				dValido:=false;
-			end;
+			longitudAdecuada:=true;
 		end;
 		
-		if (length(m)=2) then	{if para quedarme solo con los strings de dos caracteres}
+		if (f[3]='/' and f[6]='/') then	{reviso que haya barras en las posiciones 3 y 6}
 		begin
-			case m of	{case para chequear que el mes este entre 01 y 12}
-			begin
-			m[1]='0':
-				if (m[2]='1' or m[2]='2' or m[2]='3' or m[2]='4' or m[2]='5' or m[2]='6' or m[2]='7' or m[2]='8' or m[2]='9') then
-				begin
-					mValido:=true;
-				end;
-
-			m[1]='1':
-				if (m[2]='0' or m[2]='1' or m[2]='2') then
-				begin
-					mValido:=true;
-				end
-			else	
-				mValido:=false;
-			end;
+			f3:=true;
+			f6:=true;
 		end;
 		
-		if (length(a)=4) then	{if para quedarme solo con los strings de cuatro caracteres}
+		if (f[4]='0' and f[5]='2') then	{si las posiciones 4 y 5 o sea el mes es 02}
 		begin
-			case a of	{case para chequear que el año sea valido y "razonable" o sea que no se pase del 2999}
-			begin
-			a[1]='1' or a[1]='2': 
-				a1:=true;
-			a[2]='0' or a[2]='1' or a[2]='2' or a[2]='3' or a[2]='4' or a[2]='5' or a[2]='6' or a[2]='7' or a[2]='8' or a[2]='9': 
-				a2:=true;
-			a[3]='0' or a[3]='1' or a[3]='2' or a[3]='3' or a[3]='4' or a[3]='5' or a[3]='6' or a[3]='7' or a[3]='8' or a[3]='9':
-				a3:=true;
-			a[4]='0' or a[4]='1' or a[4]='2' or a[4]='3' or a[4]='4' or a[4]='5' or a[4]='6' or a[4]='7' or a[4]='8' or a[4]='9':
-				a4:=true
-			else
-				aValido:=false;	
-			end;
+		case f of	{reviso que en los caracteres 1 y 2 o sea el dia solo puedan estar los caracteres del 01 al 28}
+		begin
+		f[1]='0' and (f[2]='1' or f[2]='2' or f[2]='3' or f[2]='4' or f[2]='5' or f[2]='6' or f[2]='7' or f[2]='8' or f[2]='9'):
+			f1:=true;
+			f2:=true;
+			f4:=true;
+			f5:=true;
+		f[1]='1' and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8' or f[2]='9'):
+			f1:=true;
+			f2:=true;
+			f4:=true;
+			f5:=true;
+		f1[1]='2' and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8'):
+			f1:=true;
+			f2:=true;
+			f4:=true;
+			f5:=true;
+		else
+			f1:=false;	{esto lo agrego porque no tengo claro si el case of permite obviar el else}
+			f2:=false;
+			f4:=false;
+			f5:=false;
+		end;
 		end;
 		
-		if (a1:=true and a2:=true and a3:=true and a4:=true) then	{if para terminar de "construir" el año valido}
+		if ((f[4]='0' and (f[5]='4' or f[5]='6' of f[5]='9')) or (f[4]='1' and f[5]='1')) then {si el mes es 04, 06, 09 o 11}
 		begin
-			aValido:=true;
+		case f of	{reviso que el dia solo pueda estar entre 01 y 30}
+		begin
+		f[1]='0' and (f[2]='1' or f[2]='2' or f[2]='3' or f[2]='4' or f[2]='5' or f[2]='6' or f[2]='7' or f[2]='8' or f[2]='9'):
+			f1:=true;
+			f2:=true;
+			f4:=true;
+			f5:=true;
+		(f[1]='1' or f[1]='2') and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8' or f[2]='9'):
+			f1:=true;
+			f2:=true;
+			f4:=true;
+			f5:=true;
+		F[1]='3' and (f[2]='0'):
+			f1:=true;
+			f2:=true;
+			f4:=true;
+			f5:=true;
+		else
+			f1:=false;
+			f2:=false;
+			f4:=false;
+			f5:=false;
 		end;
-			
-		if (dValido=true and mValido=true and aValido=true) then	{si todos los componentes son validos damos el ok a la fecha}
+		end;
+		
+		if ((f[4]='0' and (f[5]='1' or f[5]='3' or f[5]='5' or f[5]='7' or f[5]='8')) or (f[4]='1' and (f[5]='0' or f[5]='2'))) then {resto de los meses}
+		begin
+		case f of	{reviso que el dia solo pueda estar entre 01 y 31}
+		begin
+		f[1]='0' and (f[2]='1' or f[2]='2' or f[2]='3' or f[2]='4' or f[2]='5' or f[2]='6' or f[2]='7' or f[2]='8' or f[2]='9'):
+			f1:=true;
+			f2:=true;
+			f4:=true;
+			f5:=true;
+		(f[1]='1' or f[1]='2') and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8' or f[2]='9'):
+			f1:=true;
+			f2:=true;
+			f4:=true;
+			f5:=true;
+		F[1]='3' and (f[2]='0' or f[2]='1'):
+			f1:=true;
+			f2:=true;
+			f4:=true;
+			f5:=true;
+		else
+			f1:=false;
+			f2:=false;
+			f4:=false;
+			f5:=false;
+		end;
+		end;
+		
+		case f of	{reviso que el año sea "razonable" en este caso entre 1000 y 2999}
+		begin
+		f[7]='1' or f[7]='2':
+			f7:=true;
+		f[8]='0' or f[8]='1' or f[8]='2' or f[8]='3' or f[8]='4' or f[8]='5' or f[8]='6' or f[8]='7' or f[8]='8' or f[8]='9':
+			f8:= true;
+		f[9]='0' or f[9]='1' or f[9]='2' or f[9]='3' or f[9]='4' or f[9]='5' or f[9]='6' or f[9]='7' or f[9]='8' or f[9]='9':
+			f9:= true;	
+		f[10]='0' or f[10]='1' or f[10]='2' or f[10]='3' or f[10]='4' or f[10]='5' or f[10]='6' or f[10]='7' or f[10]='8' or f[10]='9':
+			f10:= true;	
+		else
+			f7:=false;
+			f8:=false;
+			f9:=false;
+			f10:=false;
+		end;
+		
+		if (f1 and f2 and f3 and f4 and f5 and f6 and f7 and f8 and f9 and f10 and longitudAdecuada) then {construyo la fecha valida}
 			fechaValida:=true
 		else	
 			fechaValida:=false;
-		end;	
+		end;
 	end;
 
 	
 BEGIN
-	write('Ingrese dia: ');
-	readln(dia);
-	write('Ingrese mes: ');
-	readln(mes);
-	write('Ingrese año: ');
-	readln(year);
+		
+	writeln('ingrese fecha');
+	readln(fecha);
 	
-	if (fechaValida(dia,mes,year)) then
-		writeln(dia,'/',mes,'/',year)
-	else
-		writeln(dia,'/,mes,'/',year,' no es un formato de fecha valido');
+	if (fechaValida(fecha)) then
+		writeln(fecha)
+	else	
+		writeln('la fecha ingresada no tiene un formato valido');
 	end;	
-
+		
 END.
+
 
 
 
