@@ -191,6 +191,6 @@ PROCEDURE divisores;
 
 BEGIN
 	readln(n);
-	divisores;
+	divisores(n);
 
 END.
