@@ -186,7 +186,7 @@ PROCEDURE divisores (num:integer);
 		begin
 			if (num mod i = 0) then
 			begin
-				writeln(i);
+				write(i,' ');
 			end;		
 		end;
 	end;
