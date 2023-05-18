@@ -25,7 +25,7 @@ FUNCTION palabraAdecuada (p:string):boolean;
 				ultimaVoc:=false;
 			end;
 		end;
-		if (primeraCons=true and ultimaVoc:=true)then	{si las dos condiciones se cumplen damos el ok}
+		if (primeraCons=true and ultimaVoc=true)then	{si las dos condiciones se cumplen damos el ok}
 				
 			palabraAdecuada:=true
 		else	
