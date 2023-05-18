@@ -159,7 +159,7 @@ BEGIN
 	readln(year);
 	
 	if (fechaValida(dia,mes,year)=true) then
-		writeln('la fecha que ingreso es ',dia,'/',mes,'/',year)
+		writeln(dia,'/',mes,'/',year)
 	else
 		writeln(dia,'/,mes,'/',year,' no es un formato de fecha valido');
 	end;	
