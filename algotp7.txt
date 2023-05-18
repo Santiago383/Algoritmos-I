@@ -12,11 +12,11 @@ FUNCTION palabraAdecuada (p:string):boolean;
 		primeraCons:=false;
 		ultimaVoc:=false;
 		
-		if (p[1] = 'a' or p[1] = 'e' or p[1] = 'i' or p[1] = 'o' or p[1] = 'u') then
+		if (p[1] = 'a' or p[1] = 'e' or p[1] = 'i' or p[1] = 'o' or p[1] = 'u') then	{reviso si la primera es vocal o no}
 		
 			primeraCons:=false
-		else
-			if (p[length(p)] = 'a' or p[length(p)] = 'e' or p[length(p)] = 'i' or p[length(p)] = 'o' or p[length(p)] = 'u') then
+		else										{si la primera no es vocal reviso si la ultima es vocal}
+			if (p[length(p)] = 'a' or p[length(p)] = 'e' or p[length(p)] = 'i' or p[length(p)] = 'o' or p[length(p)] = 'u') then 
 			
 				primeraCons:=true;
 				ultimaVoc:=true
@@ -25,7 +25,7 @@ FUNCTION palabraAdecuada (p:string):boolean;
 				ultimaVoc:=false;
 			end;
 		end;
-		if (primeraCons=true and ultimaVoc:=true)then
+		if (primeraCons=true and ultimaVoc:=true)then	{si las dos condiciones se cumplen damos el ok}
 				
 			palabraAdecuada:=true
 		else	
@@ -74,9 +74,9 @@ FUNCTION fechaValida (d, m, a:string):boolean;
 		a3:=false;
 		a4:=false;
 		
-		if (length(d)=2) then
+		if (length(d)=2) then	{if para quedarme solo con los strings de dos caracteres}
 		begin
-			case d of
+			case d of	{case para chequear que el dia este entre 01 y 31}
 			begin
 			d[1]='0': 
 				if (d[2]='1' or d[2]='2' or d[2]='3' or d[2]='4' or d[2]='5' or d[2]='6' or d[2]='7' or d[2]='8' or d[2]='9') then
@@ -100,9 +100,9 @@ FUNCTION fechaValida (d, m, a:string):boolean;
 			end;
 		end;
 		
-		if (length(m)=2) then
+		if (length(m)=2) then	{if para quedarme solo con los strings de dos caracteres}
 		begin
-			case m of
+			case m of	{case para chequear que el mes este entre 01 y 12}
 			begin
 			m[1]='0':
 				if (m[2]='1' or m[2]='2' or m[2]='3' or m[2]='4' or m[2]='5' or m[2]='6' or m[2]='7' or m[2]='8' or m[2]='9') then
@@ -120,9 +120,9 @@ FUNCTION fechaValida (d, m, a:string):boolean;
 			end;
 		end;
 		
-		if (length(a)=4) then
+		if (length(a)=4) then	{if para quedarme solo con los strings de cuatro caracteres}
 		begin
-			case a of
+			case a of	{case para chequear que el año sea "razonable" o sea que permita desde el 1000 hasta el 2999}
 			begin
 			a[1]='1' or a[1]='2': 
 				a1:=true;
@@ -137,12 +137,12 @@ FUNCTION fechaValida (d, m, a:string):boolean;
 			end;
 		end;
 		
-		if (a1:=true and a2:=true and a3:=true and a4:=true) then
+		if (a1:=true and a2:=true and a3:=true and a4:=true) then	{if para terminar de "construir" el año valido}
 		begin
 			aValido:=true;
 		end;
 			
-		if (dValido=true and mValido=true and aValido=true) then
+		if (dValido=true and mValido=true and aValido=true) then	{si todos los componentes son validos damos el ok a la fecha}
 			fechaValida:=true
 		else	
 			fechaValida:=false;
