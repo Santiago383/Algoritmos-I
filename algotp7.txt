@@ -105,7 +105,7 @@ FUNCTION fechaValida (f:string):boolean;
 				f1:=true;
 				f2:=true;
 				f4:=true;
-				f5:=true;
+				f5:=true
 			else
 				f1:=false;	{esto lo agrego porque no tengo claro si el case of permite obviar el else}
 				f2:=false;
@@ -132,7 +132,7 @@ FUNCTION fechaValida (f:string):boolean;
 				f1:=true;
 				f2:=true;
 				f4:=true;
-				f5:=true;
+				f5:=true
 			else
 				f1:=false;
 				f2:=false;
@@ -159,7 +159,7 @@ FUNCTION fechaValida (f:string):boolean;
 				f1:=true;
 				f2:=true;
 				f4:=true;
-				f5:=true;
+				f5:=true
 			else
 				f1:=false;
 				f2:=false;
