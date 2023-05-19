@@ -25,7 +25,7 @@ FUNCTION palabraAdecuada (p:string):boolean;
 				ultimaVoc:=false;
 			end;
 		end;
-		if (primeraCons=true and ultimaVoc=true)then	{si las dos condiciones se cumplen damos el ok}
+		if (primeraCons and ultimaVoc) then	{si las dos condiciones se cumplen damos el ok}
 				
 			palabraAdecuada:=true
 		else	
@@ -89,83 +89,83 @@ FUNCTION fechaValida (f:string):boolean;
 		
 		if (f[4]='0' and f[5]='2') then	{si las posiciones 4 y 5 o sea el mes es 02}
 		begin
-		case f of	{reviso que en los caracteres 1 y 2 o sea el dia solo puedan estar los caracteres del 01 al 28}
-		begin
-		f[1]='0' and (f[2]='1' or f[2]='2' or f[2]='3' or f[2]='4' or f[2]='5' or f[2]='6' or f[2]='7' or f[2]='8' or f[2]='9'):
-			f1:=true;
-			f2:=true;
-			f4:=true;
-			f5:=true;
-		f[1]='1' and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8' or f[2]='9'):
-			f1:=true;
-			f2:=true;
-			f4:=true;
-			f5:=true;
-		f1[1]='2' and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8'):
-			f1:=true;
-			f2:=true;
-			f4:=true;
-			f5:=true;
-		else
-			f1:=false;	{esto lo agrego porque no tengo claro si el case of permite obviar el else}
-			f2:=false;
-			f4:=false;
-			f5:=false;
-		end;
+			case f of	{reviso que en los caracteres 1 y 2 o sea el dia solo puedan estar los caracteres del 01 al 28}
+			begin
+			f[1]='0' and (f[2]='1' or f[2]='2' or f[2]='3' or f[2]='4' or f[2]='5' or f[2]='6' or f[2]='7' or f[2]='8' or f[2]='9'):
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			f[1]='1' and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8' or f[2]='9'):
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			f1[1]='2' and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8'):
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			else
+				f1:=false;	{esto lo agrego porque no tengo claro si el case of permite obviar el else}
+				f2:=false;
+				f4:=false;
+				f5:=false;
+			end;
 		end;
 		
 		if ((f[4]='0' and (f[5]='4' or f[5]='6' of f[5]='9')) or (f[4]='1' and f[5]='1')) then {si el mes es 04, 06, 09 o 11}
 		begin
-		case f of	{reviso que el dia solo pueda estar entre 01 y 30}
-		begin
-		f[1]='0' and (f[2]='1' or f[2]='2' or f[2]='3' or f[2]='4' or f[2]='5' or f[2]='6' or f[2]='7' or f[2]='8' or f[2]='9'):
-			f1:=true;
-			f2:=true;
-			f4:=true;
-			f5:=true;
-		(f[1]='1' or f[1]='2') and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8' or f[2]='9'):
-			f1:=true;
-			f2:=true;
-			f4:=true;
-			f5:=true;
-		F[1]='3' and (f[2]='0'):
-			f1:=true;
-			f2:=true;
-			f4:=true;
-			f5:=true;
-		else
-			f1:=false;
-			f2:=false;
-			f4:=false;
-			f5:=false;
-		end;
+			case f of	{reviso que el dia solo pueda estar entre 01 y 30}
+			begin
+			f[1]='0' and (f[2]='1' or f[2]='2' or f[2]='3' or f[2]='4' or f[2]='5' or f[2]='6' or f[2]='7' or f[2]='8' or f[2]='9'):
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			(f[1]='1' or f[1]='2') and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8' or f[2]='9'):
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			F[1]='3' and (f[2]='0'):
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			else
+				f1:=false;
+				f2:=false;
+				f4:=false;
+				f5:=false;
+			end;
 		end;
 		
 		if ((f[4]='0' and (f[5]='1' or f[5]='3' or f[5]='5' or f[5]='7' or f[5]='8')) or (f[4]='1' and (f[5]='0' or f[5]='2'))) then {resto de los meses}
 		begin
-		case f of	{reviso que el dia solo pueda estar entre 01 y 31}
-		begin
-		f[1]='0' and (f[2]='1' or f[2]='2' or f[2]='3' or f[2]='4' or f[2]='5' or f[2]='6' or f[2]='7' or f[2]='8' or f[2]='9'):
-			f1:=true;
-			f2:=true;
-			f4:=true;
-			f5:=true;
-		(f[1]='1' or f[1]='2') and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8' or f[2]='9'):
-			f1:=true;
-			f2:=true;
-			f4:=true;
-			f5:=true;
-		F[1]='3' and (f[2]='0' or f[2]='1'):
-			f1:=true;
-			f2:=true;
-			f4:=true;
-			f5:=true;
-		else
-			f1:=false;
-			f2:=false;
-			f4:=false;
-			f5:=false;
-		end;
+			case f of	{reviso que el dia solo pueda estar entre 01 y 31}
+			begin
+			f[1]='0' and (f[2]='1' or f[2]='2' or f[2]='3' or f[2]='4' or f[2]='5' or f[2]='6' or f[2]='7' or f[2]='8' or f[2]='9'):
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			(f[1]='1' or f[1]='2') and (f[2]='0' or f[2]='1' f[2]='2' or f[2]='3' f[2]='4' or f[2]='5' f[2]='6' or f[2]='7' f[2]='8' or f[2]='9'):
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			F[1]='3' and (f[2]='0' or f[2]='1'):
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			else
+				f1:=false;
+				f2:=false;
+				f4:=false;
+				f5:=false;
+			end;
 		end;
 		
 		case f of	{reviso que el año sea "razonable" en este caso entre 1000 y 2999}
@@ -231,9 +231,6 @@ PROCEDURE divisores (num:integer);
 			end;		
 		end;
 	end;
-
-
-
 
 BEGIN
 	readln(n);
