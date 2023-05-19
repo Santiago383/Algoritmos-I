@@ -105,12 +105,7 @@ FUNCTION fechaValida (f:string):boolean;
 				f1:=true;
 				f2:=true;
 				f4:=true;
-				f5:=true
-			else
-				f1:=false;	{esto lo agrego porque no tengo claro si el case of permite obviar el else}
-				f2:=false;
-				f4:=false;
-				f5:=false;
+				f5:=true;
 			end;
 		end;
 		
@@ -132,12 +127,7 @@ FUNCTION fechaValida (f:string):boolean;
 				f1:=true;
 				f2:=true;
 				f4:=true;
-				f5:=true
-			else
-				f1:=false;
-				f2:=false;
-				f4:=false;
-				f5:=false;
+				f5:=true;
 			end;
 		end;
 		
@@ -159,12 +149,7 @@ FUNCTION fechaValida (f:string):boolean;
 				f1:=true;
 				f2:=true;
 				f4:=true;
-				f5:=true
-			else
-				f1:=false;
-				f2:=false;
-				f4:=false;
-				f5:=false;
+				f5:=true;
 			end;
 		end;
 		
@@ -177,12 +162,7 @@ FUNCTION fechaValida (f:string):boolean;
 		f[9]='0' or f[9]='1' or f[9]='2' or f[9]='3' or f[9]='4' or f[9]='5' or f[9]='6' or f[9]='7' or f[9]='8' or f[9]='9':
 			f9:= true;	
 		f[10]='0' or f[10]='1' or f[10]='2' or f[10]='3' or f[10]='4' or f[10]='5' or f[10]='6' or f[10]='7' or f[10]='8' or f[10]='9':
-			f10:= true;	
-		else
-			f7:=false;
-			f8:=false;
-			f9:=false;
-			f10:=false;
+			f10:= true;
 		end;
 		
 		if (f1 and f2 and f3 and f4 and f5 and f6 and f7 and f8 and f9 and f10 and longitudAdecuada) then {construyo la fecha valida}
