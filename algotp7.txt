@@ -1,7 +1,7 @@
 PROGRAM tp7e10;
 
 VAR
-	plabra:string;
+	palabra:string;
 	
 FUNCTION palabraAdecuada (p:string):boolean;
 	
@@ -37,7 +37,7 @@ BEGIN
 
 	readln(palabra);
 	
-	while (palabra <> fin) do
+	while (palabra <> 'fin') do
 	begin
 		if (palabraAdecuada(palabra)) then
 			writeln(palabra,' comienza con consonante y termina con vocal')
