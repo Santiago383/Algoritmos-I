@@ -51,12 +51,13 @@ BEGIN
 			writeln(palabra,' comienza con consonante y termina con vocal');
 			readln(palabra);
 		end	
-		else	
+		else
+		begin
 			writeln(palabra,' no comienza con consonante y termina con vocal');
 			readln(palabra);
 		end;
-	end.
-
+		
+	end;
 
 END.
 
