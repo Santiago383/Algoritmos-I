@@ -1,0 +1,392 @@
+PROGRAM tp7e10;
+
+VAR
+	palabra:string;
+	
+FUNCTION palabraAdecuada (p:string):boolean;
+	
+	var
+		primeraCons, ultimaVoc:boolean;
+	
+	begin
+		primeraCons:=false;
+		ultimaVoc:=false;
+		
+		if ((p[1]='a') or (p[1]='e') or (p[1]='i') or (p[1]='o') or (p[1]='u')) then	{reviso si la primera es vocal o no}
+		begin
+			primeraCons:=false;
+		end	
+		else    {si la primera no es vocal reviso si la ultima es vocal}
+		begin
+			if ((p[length(p)]='a') or (p[length(p)]='e') or (p[length(p)]='i') or (p[length(p)]='o') or (p[length(p)]='u')) then 
+			begin
+				primeraCons:=true;
+				ultimaVoc:=true;
+			end	
+			else
+			begin
+				primeraCons:=true;
+				ultimaVoc:=false;
+			end;
+		end;
+		
+		if (primeraCons and ultimaVoc) then	{si las dos condiciones se cumplen damos el ok}
+		begin		
+			palabraAdecuada:=true;
+		end	
+		else	
+		begin
+			palabraAdecuada:=false;
+		end;
+	end;
+
+BEGIN
+
+	readln(palabra);
+	
+	while (palabra <> 'fin') do
+	begin
+		if (palabraAdecuada(palabra)) then
+		begin
+			writeln(palabra,' comienza con consonante y termina con vocal');
+			readln(palabra);
+		end	
+		else	
+			writeln(palabra,' no comienza con consonante y termina con vocal');
+			readln(palabra);
+		end;
+	end.
+
+
+END.
+
+
+
+PROGRAM tp7e13;
+
+VAR
+	fecha:string;
+	
+FUNCTION fechaValida (f:string):boolean;
+
+	var
+		f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, longitudAdecuada: boolean; {variables auxiliares para chequear que cada caracter sea valido}
+		
+	begin
+		f1:=false;	{las inicializo a todas como falsas para que si no se cumple algo de lo que sigue la fecha no resulte valida}
+		f2:=false;
+		f3:=false;
+		f4:=false;
+		f5:=false;
+		f6:=false;
+		f7:=false;
+		f8:=false;
+		f9:=false;
+		f10:=false;
+		longitudAdecuada:=false;
+	
+		if (length(f) = 10) then	{reviso que la longitud del string sea 10 caracteres}
+		begin
+			longitudAdecuada:=true;
+		end;
+		
+		if ((f[3]='/') and (f[6]='/')) then	{reviso que haya barras en las posiciones 3 y 6}
+		begin
+			f3:=true;
+			f6:=true;
+		end;
+		
+		if ((f[4]='0') and (f[5]='2')) then	{si las posiciones 4 y 5 o sea el mes es 02}
+		begin
+			if ((f[1]='0') and ((f[2]='1') or (f[2]='2') or (f[2]='3') or (f[2]='4') or (f[2]='5') or (f[2]='6') or (f[2]='7') or (f[2]='8') or (f[2]='9'))) then
+			begin	
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			end	
+			else 
+			begin
+				if ((f[1]='1') and ((f[2]='0') or (f[2]='1') or (f[2]='2') or (f[2]='3') or (f[2]='4') or (f[2]='5') or (f[2]='6') or (f[2]='7') or (f[2]='8') or (f[2]='9'))) then
+				begin	
+					f1:=true;
+					f2:=true;
+					f4:=true;
+					f5:=true;
+				end	
+				else 
+				begin
+					if ((f[1]='2') and ((f[2]='0') or (f[2]='1') or (f[2]='2') or (f[2]='3') or (f[2]='4') or (f[2]='5') or (f[2]='6') or (f[2]='7') or (f[2]='8'))) then
+					begin
+						f1:=true;			{el dia solo puede variar de 01 hasta 28}
+						f2:=true;
+						f4:=true;
+						f5:=true;
+					end;
+				end;
+			end;
+		end;
+		
+		if (((f[4]='0') and ((f[5]='4') or (f[5]='6') or (f[5]='9'))) or ((f[4]='1') and (f[5]='1'))) then {si el mes es 04, 06, 09 o 11}
+		begin
+			if ((f[1]='0') and ((f[2]='1') or (f[2]='2') or (f[2]='3') or (f[2]='4') or (f[2]='5') or (f[2]='6') or (f[2]='7') or (f[2]='8') or (f[2]='9'))) then	
+			begin	
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			end	
+			else
+			begin
+				if (((f[1]='1') or (f[1]='2')) and ((f[2]='0') or (f[2]='1') or (f[2]='2') or (f[2]='3') or (f[2]='4') or (f[2]='5') or (f[2]='6') or (f[2]='7') or (f[2]='8') or (f[2]='9'))) then
+				begin	
+					f1:=true;
+					f2:=true;
+					f4:=true;
+					f5:=true;
+				end	
+				else
+				begin
+					if ((f[1]='3') and (f[2]='0')) then	{el dia solo puede variar de 01 hasta 30}
+					begin
+						f1:=true;
+						f2:=true;
+						f4:=true;
+						f5:=true;
+					end;	
+				end;	
+			end;
+		end;
+		
+		if (((f[4]='0') and ((f[5]='1') or (f[5]='3') or (f[5]='5') or (f[5]='7') or (f[5]='8'))) or ((f[4]='1') and ((f[5]='0') or (f[5]='2')))) then {resto de los meses}
+		begin
+			if ((f[1]='0') and ((f[2]='1') or (f[2]='2') or (f[2]='3') or (f[2]='4') or (f[2]='5') or (f[2]='6') or (f[2]='7') or (f[2]='8') or (f[2]='9'))) then
+			begin	
+				f1:=true;
+				f2:=true;
+				f4:=true;
+				f5:=true;
+			end	
+			else
+			begin
+				if (((f[1]='1') or (f[1]='2')) and ((f[2]='0') or (f[2]='1') or (f[2]='2') or (f[2]='3') or (f[2]='4') or (f[2]='5') or (f[2]='6') or (f[2]='7') or (f[2]='8') or (f[2]='9'))) then
+				begin	
+					f1:=true;
+					f2:=true;
+					f4:=true;
+					f5:=true;
+				end	
+				else
+				begin
+					if ((f[1]='3') and ((f[2]='0') or (f[2]='1'))) then	{el dia solo puede variar de 01 hasta 31}
+					begin
+						f1:=true;
+						f2:=true;
+						f4:=true;
+						f5:=true;
+					end;
+				end;	
+			end;
+		end;
+		
+		{reviso que el año sea "razonable" en este caso entre 1000 y 2999}
+		
+		if ((f[7]='1') or (f[7]='2')) then
+		begin
+			f7:=true;
+		end;
+		
+		if ((f[8]='0') or (f[8]='1') or (f[8]='2') or (f[8]='3') or (f[8]='4') or (f[8]='5') or (f[8]='6') or (f[8]='7') or (f[8]='8') or (f[8]='9')) then
+		begin
+			f8:= true;
+		end;
+
+		if ((f[9]='0') or (f[9]='1') or (f[9]='2') or (f[9]='3') or (f[9]='4') or (f[9]='5') or (f[9]='6') or (f[9]='7') or (f[9]='8') or (f[9]='9')) then
+		begin
+			f9:= true;	
+		end;
+
+		if ((f[10]='0') or (f[10]='1') or (f[10]='2') or (f[10]='3') or (f[10]='4') or (f[10]='5') or (f[10]='6') or (f[10]='7') or (f[10]='8') or (f[10]='9')) then
+		begin	
+			f10:= true;
+		end;
+		
+		if (f1 and f2 and f3 and f4 and f5 and f6 and f7 and f8 and f9 and f10 and longitudAdecuada) then {construyo la fecha valida}
+		begin	
+			fechaValida:=true;
+		end	
+		else
+		begin
+			fechaValida:=false;
+		end;
+	end;
+
+	
+BEGIN
+		
+	writeln('ingrese fecha');
+	readln(fecha);
+	
+	while (fecha <> 'fin') do
+	begin
+	    if (fechaValida(fecha)) then
+	    begin	
+		    writeln('aceptada');
+	    end	
+	    else
+	    begin
+		    writeln('la fecha ingresada no tiene un formato valido');
+	    end;
+	    readln(fecha);
+	end;
+		
+END.
+
+
+
+program ejercicio13; {esta version usa la funcion Val}
+
+var
+    fecha: string;
+    
+function fechaValida (f:string):boolean;
+
+var 
+    d, m, a: string;
+    numD, numM, numA, code: integer;
+    f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, long: boolean;
+    
+begin
+    
+    d:=copy(f,1,2);
+    m:=copy(f,4,2);
+    a:=copy(f,7,4);
+    val(d,numD,code);
+    val(m,numM,code);
+    val(a,numA,code);
+    
+    f1:=false;
+    f2:=false;
+    f3:=false;
+    f4:=false;
+    f5:=false;
+    f6:=false;
+    f7:=false;
+    f8:=false;
+    f9:=false;
+    f10:=false;
+    long:=false;
+    
+    if (length(f)=10) then
+    begin
+        long:=true;
+    end;
+    
+    if ((f[3]='/') and (f[6]='/')) then
+    begin
+        f3:=true;
+        f6:=true;
+    end;
+    
+    if (numM=2) then
+    begin
+        if ((numD>=1)and(numD<=28)) then
+        begin
+            f1:=true;
+            f2:=true;
+            f4:=true;
+            f5:=true;
+        end;    
+    end;
+    
+    if ((numM=4) or (numM=6) or (numM=9) or (numM=11)) then
+    begin
+        if ((numD>=1) and (numD<=30)) then
+        begin
+            f1:=true;
+            f2:=true;
+            f4:=true;
+            f5:=true;
+        end;
+    end;
+    
+    if ((numM=1) or (numM=3) or (numM=5) or (numM=7) or (numM=8) or (numM=10) or (numM=12)) then
+    begin
+        if ((numD>=1) and (numD<=31)) then
+        begin
+            f1:=true;
+            f2:=true;
+            f4:=true;
+            f5:=true;
+        end;
+    end;
+    
+    if ((numA>=1000) and (numA<=2099)) then
+    begin
+        f7:=true;
+        f8:=true;
+        f9:=true;
+        f10:=true;
+    end;
+    
+    if (f1 and f2 and f3 and f4 and f5 and f6 and f7 and f9 and f10 and long) then
+    begin
+        fechaValida:=true;
+    end
+    else
+    begin
+        fechaValida:=false;
+    end;    
+    
+end;
+    
+begin
+    
+    writeln('Ingrese fecha: ');
+    readln(fecha);
+    
+    while (fecha <> 'fin') do
+    begin
+        if (fechaValida(fecha)) then
+        begin
+            writeln('aceptada');
+            readln(fecha);
+        end
+        else
+        begin
+            writeln('el formato de la fecha no es valido');
+            readln(fecha);
+        end;    
+    end;
+
+end.
+
+
+
+PROGRAM tp7e17;
+
+VAR
+	n:integer;
+
+PROCEDURE divisores (num:integer);
+
+	var
+		i:integer;
+	
+	begin
+		i:=0;
+		
+		for i:=1 to num do
+		begin
+			if (num mod i = 0) then
+			begin
+				write(i,' ');
+			end;		
+		end;
+	end;
+
+BEGIN
+	readln(n);
+	divisores(n);
+
+END.
