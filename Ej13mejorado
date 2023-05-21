@@ -1,0 +1,116 @@
+program ejercicio13;
+
+var
+    fecha: string;
+    
+function fechaValida (f:string):boolean;
+
+var 
+    d, m, a: string;
+    numD, numM, numA, code: integer;
+    f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, long: boolean;
+    
+begin
+    
+    d:=copy(f,1,2);
+    m:=copy(f,4,2);
+    a:=copy(f,7,4);
+    val(d,numD,code);
+    val(m,numM,code);
+    val(a,numA,code);
+    
+    f1:=false;
+    f2:=false;
+    f3:=false;
+    f4:=false;
+    f5:=false;
+    f6:=false;
+    f7:=false;
+    f8:=false;
+    f9:=false;
+    f10:=false;
+    long:=false;
+    
+    if (length(f)=10) then
+    begin
+        long:=true;
+    end;
+    
+    if ((f[3]='/') and (f[6]='/')) then
+    begin
+        f3:=true;
+        f6:=true;
+    end;
+    
+    if (numM=2) then
+    begin
+        if ((numD>=1)and(numD<=28)) then
+        begin
+            f1:=true;
+            f2:=true;
+            f4:=true;
+            f5:=true;
+        end;    
+    end;
+    
+    if ((numM=4) or (numM=6) or (numM=9) or (numM=11)) then
+    begin
+        if ((numD>=1) and (numD<=30)) then
+        begin
+            f1:=true;
+            f2:=true;
+            f4:=true;
+            f5:=true;
+        end;
+    end;
+    
+    if ((numM=1) or (numM=3) or (numM=5) or (numM=7) or (numM=8) or (numM=10) or (numM=12)) then
+    begin
+        if ((numD>=1) and (numD<=31)) then
+        begin
+            f1:=true;
+            f2:=true;
+            f4:=true;
+            f5:=true;
+        end;
+    end;
+    
+    if ((numA>=1000) and (numA<=2099)) then
+    begin
+        f7:=true;
+        f8:=true;
+        f9:=true;
+        f10:=true;
+    end;
+    
+    if (f1 and f2 and f3 and f4 and f5 and f6 and f7 and f9 and f10 and long) then
+    begin
+        fechaValida:=true;
+    end
+    else
+    begin
+        fechaValida:=false;
+    end;    
+    
+end;
+    
+begin
+    
+    writeln('Ingrese fecha: ');
+    readln(fecha);
+    
+    while (fecha <> 'fin') do
+    begin
+        if (fechaValida(fecha)) then
+        begin
+            writeln('aceptada');
+            readln(fecha);
+        end
+        else
+        begin
+            writeln('el formato de la fecha no es valido');
+            readln(fecha);
+        end;    
+    end;
+
+end.
