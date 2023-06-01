@@ -1,0 +1,93 @@
+program tp10e7;
+
+type
+
+    tNotas = array[1..3] of integer;
+
+    tRAlumnos = record
+        nombre:string;
+        notas:tNotas;
+    end;
+    
+    tAlumnos = array[1..3] of tRAlumnos;
+    
+var
+    
+     alumnos:tAlumnos;
+     i:integer;
+     
+begin
+
+    for i:=1 to 3 do
+    begin
+        writeln('ingrese nombre:');
+        readln(alumnos[i].nombre);
+        writeln('ingrese nota 1');
+        readln(alumnos[i].notas[1]);
+        writeln('ingrese nota 2');
+        readln(alumnos[i].notas[2]);
+        writeln('ingrese nota 3');
+        readln(alumnos[i].notas[3]);
+    end;
+    
+    for i:=1 to 3 do
+    begin
+        writeln('el promedio de ',alumnos[i].nombre,' es ',(alumnos[i].notas[1] + alumnos[i].notas[2] + alumnos[i].notas[3])/3:0:2);
+    end;
+
+end.
+
+
+
+
+program tp10e10;
+
+type
+    tRProductos = record
+        nombre:string;
+        precio:real;
+    end;
+    
+    tProductos = array[1..4] of tRproductos;
+    
+var
+    
+     productos:tProductos;
+     max, min:real;
+     caro, barato:string;
+     i: integer;
+     
+begin
+
+    max:=0;
+    min:=9999;
+    
+    for i:=1 to 4 do
+    begin
+        writeln('ingrese nombre:');
+        readln(productos[i].nombre);
+        writeln('ingrese precio');
+        readln(productos[i].precio);
+    end;
+    
+    for i:=1 to 4 do
+    begin
+        if (productos[i].precio > max) then
+        begin
+            max:=productos[i].precio;
+            caro:=productos[i].nombre;
+        end;
+    end;
+    
+    for i:=1 to 4 do
+    begin
+        if (productos[i].precio < min) then
+        begin
+            min:=productos[i].precio;
+            barato:=productos[i].nombre;
+        end;
+    end;
+    
+    writeln('el mas caro es ',caro,', y el mas barato es ',barato);
+
+end.
