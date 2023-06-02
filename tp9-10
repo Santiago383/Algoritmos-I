@@ -221,7 +221,7 @@ var
      
 begin
 
-    for i:=1 to 3 do        {pongo menos elementos para que sea facil de testear}
+    for i:=1 to 3 do     
     begin
         writeln('ingrese nombre:');
         readln(alumnos[i].nombre);
