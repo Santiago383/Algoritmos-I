@@ -88,6 +88,7 @@ begin
         end;
     end;
     
+    writeln;
     writeln('el mas caro es ',caro,', y el mas barato es ',barato);
 
 end.
