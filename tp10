@@ -2,18 +2,18 @@ program tp10e7;
 
 type
 
-    tNotas = array[1..3] of integer;
+    taNotas = array[1..3] of integer;
 
-    tRAlumnos = record
+    trAlumnos = record
         nombre:string;
-        notas:tNotas;
+        notas:taNotas;
     end;
     
-    tAlumnos = array[1..3] of tRAlumnos;
+    taAlumnos = array[1..3] of trAlumnos;
     
 var
     
-     alumnos:tAlumnos;
+     alumnos:taAlumnos;
      i:integer;
      
 begin
@@ -43,16 +43,16 @@ end.
 program tp10e10;
 
 type
-    tRProductos = record
+    trProductos = record
         nombre:string;
         precio:real;
     end;
     
-    tProductos = array[1..4] of tRproductos;
+    taProductos = array[1..4] of trProductos;
     
 var
     
-     productos:tProductos;
+     productos:taProductos;
      max, min:real;
      caro, barato:string;
      i: integer;
