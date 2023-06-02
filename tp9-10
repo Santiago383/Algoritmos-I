@@ -1,3 +1,59 @@
+program tp9e15;
+
+type
+    taArray = array[1..5,1..3] of integer;
+
+var
+    a:taArray = ((1,7,0),(5,6,0),(6,4,0),(7,3,0),(0,0,0));
+    i, j, col3, fil5, suma:integer;
+    
+begin
+    
+    for i:=1 to 4 do
+    begin
+        col3:=0;
+        for j:=1 to 2 do
+        begin
+            col3:=col3 + a[i,j];
+        end;
+        a[i,3]:=col3;
+    end;
+    
+    for j:=1 to 2 do
+    begin
+        fil5:=0;
+        for i:=1 to 4 do
+        begin
+            fil5:=fil5 + a[i,j];
+        end;
+        a[5,j]:=fil5;
+    end;
+    
+    suma:=0;
+    
+    for i:=1 to 5 do
+    begin
+        for j:=1 to 3 do
+        begin
+            suma:=suma + a[i,j];
+        end;
+    end;
+    
+    a[5,3]:=suma;
+    
+    for i:=1 to 5 do
+    begin
+        for j:=1 to 3 do
+        begin
+            write(a[i,j],' ');
+        end;
+        writeln;
+    end;
+        
+end.
+
+-------------------------------------------
+
 program tp10e7;
 
 type
@@ -38,7 +94,7 @@ begin
 end.
 
 
-
+-------------------------------------
 
 program tp10e10;
 
