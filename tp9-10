@@ -1,3 +1,7 @@
+{programa que cargue en un array 100 elementos random y nos
+informe la posición y el elemento mayor, de igual manera realice la misma
+operación para el segundo elemento mayor}
+
 program tp9e5;      {este y alguno de los que sigue los hicimos en clase pero no los copie tal cual y algunas cosas estan diferentes asi que por las dudas}
 
 type
@@ -44,6 +48,11 @@ end.
 
 
 --------------------------------------
+
+{programa que permita ingresar hasta 20 alumnos con sus notas de 3
+materias, e informar los alumnos que aprobaron (mayor a 4),
+El alumno con mayor nota.
+El alumno con menor promedio}
 
 program tp9e9;
 
@@ -120,6 +129,18 @@ end.
 
 --------------------------------------
 
+{programa en Pascal que sume los elementos de cada una de las
+filas y de las columnas de la siguiente matriz; el resultado de cada suma se
+almacenará en la última posición de la fila o columna correspondiente.
+Además la suma total de todos los elementos de la matriz se almacenará en el
+elemento de la esquina inferior derecha de la matriz:
+1 7 0
+5 6 0
+6 4 0
+7 3 0
+0 0 0
+Es decir en ese caso la primera fila debería ser 1 7 8.}
+
 program tp9e15;     
 
 type
@@ -176,6 +197,11 @@ end.
 
 -------------------------------------------
 
+{Crea un registro llamado "Alumno" con los campos "nombre" (cadena de caracteres)
+y "calificaciones" (arreglo de enteros). Luego, declara un arreglo de alumnos con
+capacidad para 5 elementos. Pide al usuario que ingrese el nombre y las
+calificaciones de cada alumno, y al final muestra el promedio de cada uno.}
+
 program tp10e7;
 
 type
@@ -217,6 +243,11 @@ end.
 
 
 -------------------------------------
+
+{Crea un registro llamado "Producto" con los campos "nombre" (cadena de
+caracteres) y "precio" (real). Luego, declara un arreglo de productos con capacidad
+para 100 elementos. Pide al usuario que ingrese el nombre y el precio de cada
+producto y al final muestra el producto más caro y el producto más barato.}
 
 program tp10e10;
 
