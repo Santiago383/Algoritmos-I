@@ -1,4 +1,4 @@
-program tp9e15;
+program tp9e15;     {este lo hicimos en clase pero no lo copie tal cual y algunas cosas estan diferentes asi que por las dudas}
 
 type
     taArray = array[1..5,1..3] of integer;
@@ -68,9 +68,8 @@ type
     taAlumnos = array[1..3] of trAlumnos;
     
 var
-    
      alumnos:taAlumnos;
-     i:integer;
+     i, j:integer;
      
 begin
 
@@ -78,13 +77,14 @@ begin
     begin
         writeln('ingrese nombre:');
         readln(alumnos[i].nombre);
-        writeln('ingrese nota 1');
-        readln(alumnos[i].notas[1]);
-        writeln('ingrese nota 2');
-        readln(alumnos[i].notas[2]);
-        writeln('ingrese nota 3');
-        readln(alumnos[i].notas[3]);
+        for j:=1 to 3 do
+        begin
+            writeln('ingrese nota de la materia ',j);
+            readln(alumnos[i].notas[j]);
+        end;
     end;
+    
+    writeln;
     
     for i:=1 to 3 do
     begin
