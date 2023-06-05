@@ -176,7 +176,6 @@ begin
     end;
     
     suma:=0;
-    
     for i:=1 to 5 do
     begin
         for j:=1 to 3 do
@@ -184,10 +183,9 @@ begin
             suma:=suma + a[i,j];
         end;
     end;
-    
     a[5,3]:=suma;
     
-    for i:=1 to 5 do
+    for i:=1 to 5 do        {pongo esto para ver si funciono}
     begin
         for j:=1 to 3 do
         begin
