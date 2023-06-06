@@ -78,12 +78,10 @@ begin
 
     for i:=1 to 3 do
     begin
-        writeln('nombre:');
-        readln(alumnos[i].nombre);
+        write('nombre: ');readln(alumnos[i].nombre);
         for j:=1 to 3 do
         begin
-            writeln('nota materia ',j,':');
-            readln(alumnos[i].nota[j]);
+            write('nota materia ',j,': ');readln(alumnos[i].nota[j]);
         end;
     end;
     
@@ -224,12 +222,10 @@ begin
 
     for i:=1 to 3 do     
     begin
-        writeln('ingrese nombre:');
-        readln(alumnos[i].nombre);
+        write('ingrese nombre: ');readln(alumnos[i].nombre);
         for j:=1 to 3 do
         begin
-            writeln('ingrese nota de la materia ',j);
-            readln(alumnos[i].notas[j]);
+            write('ingrese nota de la materia ',j,': ');readln(alumnos[i].notas[j]);
         end;
     end;
     
