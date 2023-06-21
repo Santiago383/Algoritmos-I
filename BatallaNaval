@@ -77,7 +77,7 @@ BEGIN
         
     end;
     
-    randomize;        {este randomize no estoy seguro de si con ponerlo una vez al principio basta, creo que si}
+    randomize;        {este randomize no estoy seguro de si es necesario ponerlo aca, creo que con ponerlo una vez al principio basta}
     cant:=0;
     while (cant < 2) do   {lo mismo para los cruceros, hacemos un while para que ponga dos}
     begin
@@ -220,7 +220,7 @@ BEGIN
         
         if (m[x,y] = 'd') then    {si tocamos un barco grande tambien reemplazamos con agua}
         begin
-            if ((m[x,y+1] <> 'd') and (m[x,y-1] <> 'd')) then   {con este tipo de coas chequeamos que no queden pedazos sanos del barco}
+            if ((m[x,y+1] <> 'd') and (m[x,y-1] <> 'd')) then   {con este tipo de cosas chequeamos que no queden pedazos sanos del barco}
             begin
                 writeln('destructor hundido');
                 m[x,y]:='~';
