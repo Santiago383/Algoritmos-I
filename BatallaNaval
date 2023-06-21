@@ -185,7 +185,7 @@ BEGIN
         end;   
     end; 
     
-    for i:=1 to 10 do
+    for i:=1 to 10 do       {esto es para testear si quedo bien hecha}
     begin
         for j:=1 to 10 do
         begin
@@ -262,6 +262,19 @@ BEGIN
                 m[x,y]:='~';
             end;
         end;
+        
+        writeln;
+        
+        for i:=1 to 10 do       {esto tambien es para ir viendo como funciona}
+        begin
+            for j:=1 to 10 do
+            begin
+                write(m[i,j],' ');
+            end;
+            writeln;
+        end;
+        
+        writeln;
         
         if (h = 10) then    {si hundio un total de diez barcos imprimimos victoria y el loop no empieza de vuelta}
         begin
