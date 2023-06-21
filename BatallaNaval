@@ -1,0 +1,275 @@
+program batalla;
+
+type
+
+    taArray = array[1..10,1..10] of char;
+    
+var
+    
+    m:taArray;
+    m2:taArray;
+    i, j, cant:integer;
+    x,y:integer;
+    h:integer;
+    
+    
+    
+BEGIN
+
+    randomize;
+    
+    for i:=1 to 10 do   {llenamos de agua primero}
+    begin
+        for j:=1 to 10 do
+        begin
+            m[i,j]:='~';
+        end;
+    end;
+    
+    for i:=1 to 10 do   {llenamos matriz auxiliar, no se si es necesario}
+    begin
+        for j:=1 to 10 do
+        begin
+            m2[i,j]:='0';
+        end;
+    end;
+    
+    i:=random(10)+1;
+    j:=random(10)+1;
+    
+    if (j < 8) then   {cargamos el acorazado}
+    begin
+        m[i,j]:='a';
+        m[i,j+1]:='a';
+        m[i,j+2]:='a';
+        m[i,j+3]:='a';
+        
+        m2[i,j-1]:='x';   {ponemos x en la matriz aux donde esta el acorazado y en el agua alrededor para que quepan otros barcos}
+        m2[i,j-2]:='x';
+        m2[i,j-3]:='x';
+        m2[i,j]:='x';
+        m2[i,j+1]:='x';
+        m2[i,j+2]:='x';
+        m2[i,j+3]:='x';
+        m2[i,j+4]:='x';
+        m2[i,j+5]:='x';
+        m2[i,j+6]:='x';
+        
+    end
+    else
+    begin
+        m[i,j]:='a';    {esto es por si el barco cae demasiado cerca del borde derecho}
+        m[i,j-1]:='a';
+        m[i,j-2]:='a';
+        m[i,j-3]:='a';
+        
+        m2[i,j+1]:='x';
+        m2[i,j+2]:='x';
+        m2[i,j+3]:='x';
+        m2[i,j]:='x';
+        m2[i,j-1]:='x';
+        m2[i,j-2]:='x';
+        m2[i,j-3]:='x';
+        m2[i,j-4]:='x';
+        m2[i,j-5]:='x';
+        m2[i,j-6]:='x';
+        
+        
+    end;
+    
+    randomize;
+    cant:=0;
+    while (cant < 2) do   {lo mismo para los cruceros, hacemos un while para que ponga dos}
+    begin
+        i:=random(10)+1;
+        j:=random(10)+1;
+        begin
+            if (m2[i,j] <> 'x') then    {con estas x evitamos poner barcos demasiado cerca de otros}
+            begin
+                if (j < 9) then
+                begin
+                    m[i,j]:='c';
+                    m[i,j+1]:='c';
+                    m[i,j+2]:='c';
+                    
+                    m2[i,j-1]:='x';
+                    m2[i,j-2]:='x';
+                    m2[i,j-3]:='x';
+                    m2[i,j]:='x';
+                    m2[i,j+1]:='x';
+                    m2[i,j+2]:='x';
+                    m2[i,j+3]:='x';
+                    m2[i,j+4]:='x';
+                    m2[i,j+5]:='x';
+                    
+                    cant:=cant+1;
+                end
+                else
+                begin
+                    m[i,j]:='c';
+                    m[i,j-1]:='c';
+                    m[i,j-2]:='c';
+                    
+                    m2[i,j+1]:='x';
+                    m2[i,j+2]:='x';
+                    m2[i,j+3]:='x';
+                    m2[i,j]:='x';
+                    m2[i,j-1]:='x';
+                    m2[i,j-2]:='x';
+                    m2[i,j-3]:='x';
+                    m2[i,j-4]:='x';
+                    m2[i,j-5]:='x';
+                    
+                    cant:=cant+1;
+                end;
+            end;    
+        end;   
+    end; 
+    
+    randomize;
+    cant:=0;
+    while (cant < 3) do   {lo mismo para poner tres destructores}
+    begin
+        i:=random(10)+1;
+        j:=random(10)+1;
+        begin
+            if (m2[i,j] <> 'x') then
+            begin
+                if (j < 10) then
+                begin
+                    m[i,j]:='d';
+                    m[i,j+1]:='d';
+                    
+                    m2[i,j-1]:='x';
+                    m2[i,j-2]:='x';
+                    m2[i,j]:='x';
+                    m2[i,j+1]:='x';
+                    m2[i,j+3]:='x';
+                    m2[i,j+4]:='x';
+                    
+                    cant:=cant+1;
+                end
+                else
+                begin
+                    m[i,j]:='d';
+                    m[i,j-1]:='d';
+                    
+                    m2[i,j+1]:='x';
+                    m2[i,j+2]:='x';
+                    m2[i,j]:='x';
+                    m2[i,j-1]:='x';
+                    m2[i,j-3]:='x';
+                    m2[i,j-4]:='x';
+                    
+                    cant:=cant+1;
+                end;
+            end;    
+        end;   
+    end; 
+    
+    randomize;
+    cant:=0;
+    while (cant < 4) do   {lo mismo para los cuatro submarinos}
+    begin
+        i:=random(10)+1;
+        j:=random(10)+1;
+        begin
+            if (m2[i,j] <> 'x') then
+            begin
+                m[i,j]:='s';
+                    
+                m2[i,j]:='x';
+                    
+                cant:=cant+1;
+            end;    
+        end;   
+    end; 
+    
+    for i:=1 to 10 do
+    begin
+        for j:=1 to 10 do
+        begin
+            write(m[i,j],' ');
+        end;
+        writeln;
+    end;
+    
+    
+    writeln;        {comienza juego}
+    h:=0;
+    
+    while (h < 10) do     {el juego sigue hasta que no se hayan hundido 10 barcos en total}
+    begin
+    
+        write('ingrese coordenada x:');
+        readln(x);
+        write('ingrese coordenada y:');
+        readln(y);
+        
+        if (m[x,y] = '~') then  
+        begin
+            writeln('agua');
+        end;
+        
+        if (m[x,y] = 's') then    {cuando hundimos un barco incrementamos la h de hundido y reemplazamos con agua}
+        begin
+            writeln('submarino hundido');
+            m[x,y]:='~';
+            h:=h+1;
+        end;
+        
+        if (m[x,y] = 'd') then    {si tocamos un barco grande tambien reemplazamos con agua}
+        begin
+            if ((m[x,y+1] <> 'd') and (m[x,y-1] <> 'd')) then   {con este tipo de coas chequeamos que no queden pedazos sanos del barco}
+            begin
+                writeln('destructor hundido');
+                m[x,y]:='~';
+                h:=h+1;
+            end
+            else
+            begin
+                writeln('destructor tocado');
+                m[x,y]:='~';
+            end;
+        end;
+        
+        if (m[x,y] = 'c') then    {el resto es igual}
+        begin
+            if ((m[x,y+1] <> 'c') and (m[x,y+2] <> 'c') and (m[x,y-1] <> 'c') and (m[x,y-2] <> 'c')) then
+            begin
+                writeln('crucero hundido');
+                m[x,y]:='~';
+                h:=h+1;
+            end
+            else
+            begin
+                writeln('crucero tocado');
+                m[x,y]:='~';
+            end;
+        end;
+        
+        if (m[x,y] = 'a') then    {igual}
+        begin
+            if ((m[x,y+1] <> 'a') and (m[x,y+2] <> 'a') and (m[x,y+3] <> 'a') and (m[x,y-1] <> 'a') and (m[x,y-2] <> 'a') and (m[x,y-3] <> 'a')) then
+            begin
+                writeln('acorazado hundido');
+                m[x,y]:='~';
+                h:=h+1;
+            end
+            else
+            begin
+                writeln('acorazado tocado');
+                m[x,y]:='~';
+            end;
+        end;
+        
+        if (h = 10) then    {si hundio un total de diez barcos imprimimos victoria y el loop no empieza de vuelta}
+        begin
+            write('Victoria!');
+        end;
+    
+    end;
+    
+    
+
+END.
