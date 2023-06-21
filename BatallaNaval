@@ -263,22 +263,26 @@ BEGIN
             end;
         end;
         
-        writeln;
         
-        for i:=1 to 10 do       {esto tambien es para ir viendo como funciona}
-        begin
-            for j:=1 to 10 do
-            begin
-                write(m[i,j],' ');
-            end;
-            writeln;
-        end;
-        
-        writeln;
         
         if (h = 10) then    {si hundio un total de diez barcos imprimimos victoria y el loop no empieza de vuelta}
         begin
             write('Victoria!');
+        end
+        else
+        begin
+            writeln;
+        
+            for i:=1 to 10 do       {esto tambien es para ir viendo como funciona}
+            begin
+                for j:=1 to 10 do
+                begin
+                    write(m[i,j],' ');
+                end;
+                writeln;
+            end;
+        
+        writeln;
         end;
     
     end;
