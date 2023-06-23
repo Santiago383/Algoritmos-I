@@ -1,0 +1,223 @@
+program batalla;
+
+type
+    taArray = array[1..10,1..10] of char;
+    
+var
+    m:taArray;
+    m2:taArray;
+    i,j,x,y:integer;
+    h, long, total:integer;
+    id:char;
+    
+{------------------------------------------}   
+
+function longitud (tipo_barco:char):integer;  {función para obtener la long. de un barco desconocido, va a ser útil más adelante}
+
+begin
+    
+    if (tipo_barco = 'a') then
+    begin
+        longitud:=4;
+    end
+    else
+    begin
+        if (tipo_barco = 'c') then
+        begin
+            longitud:=3;
+        end
+        else
+        begin
+            if (tipo_barco = 'd') then
+            begin
+                longitud:=2;
+            end
+            else
+            begin
+                if (tipo_barco = 's') then
+                begin
+                    longitud:=1;
+                end;
+            end;    
+        end;
+    end;
+    
+end;
+    
+{------------------------------------------}    
+
+procedure cargarFlota (var grid:taArray; var aux:taArray; id_barco:char; lgt,tot:integer);  {lgt: (longitud del barco)}
+
+var
+    cant,k:integer;  {este proc. hace lo mismo que mi razonamiento original, sólo que de forma genérica}
+
+begin
+    cant:=0;
+    
+    while (cant < tot) do
+    begin
+        randomize;
+        i:=random(10)+1;
+        j:=random(10)+1;
+        if (aux[i,j] <> 'x') then  
+        begin
+            if (j <= (10-(lgt-1))) then  
+            begin
+                for k:=0 to (lgt-1) do
+                begin
+                    grid[i,j+k]:=id_barco;
+                    aux[i,j-(k+1)]:='x';    
+                    aux[i,j+k]:='x';
+                    aux[i,j+(lgt-1)+(k+1)]:='x';  {esto era para dejar espacio de ambos lados y que otro barco no pise al que ya puse}
+                end;
+                cant:=cant+1;
+            end
+            else
+            begin
+                for k:=0 to (lgt-1) do
+                begin
+                    grid[i,j-k]:=id_barco;
+                    aux[i,j-(lgt-1)-(k+1)]:='x';
+                    aux[i,j-k]:='x';
+                    aux[i,j+(k+1)]:='x';
+                end;
+                cant:=cant+1;
+            end;
+        end;    
+    end;        
+    
+end;
+
+{---------------------------------------------}
+
+function hundido (var grid2:taArray; idBarco:char; a,b,lngt:integer):boolean;  {lngt: (longitud del barco)}
+
+var                      {esta función se fija, para un barco genérico, si le quedan piezas o si está totalmente hundido}
+    z:integer;
+
+begin
+    hundido:=false;
+    
+    for z:=lngt downto 1 do
+    begin                          
+        if ((grid2[a,b-z] = idBarco) or (grid2[a,b+z] = idBarco)) then  
+        begin                                      
+            grid2[a,b]:='~';          
+            hundido:=false;                {estoy seguro de que esta solución genera un bug si hay dos cruceros o destructores a menos distancia que su longitud}
+        end                                    {es un poco plomo por eso todavía no lo hice pero creo que se podría solucionar poniéndole un identificador}
+        else                                    {distinto a cada crucero y a cada destructor(p.ej hacer el array de strings y llamarlos c1 y c2, etc)}
+        begin
+            grid2[a,b]:='~';
+            hundido:=true;
+        end;
+    end;
+end;
+
+{---------------------------------------------}
+
+begin
+
+    for i:=1 to 10 do
+    begin
+        for j:=1 to 10 do
+        begin
+            m[i,j]:='~';
+        end;    
+    end;
+    
+    for i:=1 to 10 do
+    begin
+        for j:=1 to 10 do
+        begin
+            m2[i,j]:='~';
+        end;    
+    end;
+    
+    id:='a';                            {acá cargamos la grilla usando el procedimiento cargarFlota}
+    long:=longitud(id);
+    total:=1;
+    cargarFlota(m, m2, id, long, total);
+    
+    id:='c';
+    long:=longitud(id);
+    total:=2;
+    cargarFlota(m, m2, id, long, total);
+    
+    id:='d';
+    long:=longitud(id);
+    total:=3;
+    cargarFlota(m, m2, id, long, total);
+    
+    id:='s';
+    long:=longitud(id);
+    total:=4;
+    cargarFlota(m, m2, id, long, total);
+    
+    for i:=1 to 10 do
+    begin
+        for j:=1 to 10 do
+        begin
+            write(m[i,j],' ');
+        end;  
+        writeln;
+    end;
+    
+{-----------------------------------------}    
+
+    writeln;
+    
+    h:=0;
+    
+    while (h < 10) do
+    begin
+        write('ingrese coordenada x:');
+        readln(x);
+        write('ingrese coordenada y:');
+        readln(y);
+        
+        if (m[x,y] = '~') then
+        begin
+            writeln('agua');
+        end;
+        
+        if (m[x,y] <> '~') then    {con esto vemos que pasa con un barco desconocido}
+        begin
+            id:=m[x,y];
+            long:=longitud(id);
+            if hundido(m,id,x,y,long) then 
+            begin
+                writeln('hundido');
+                h:=h+1;
+            end
+            else
+            begin
+                writeln('tocado');
+            end;
+        end;
+        
+        if (h < 10) then
+        begin
+            for i:=1 to 10 do
+            begin
+                for j:=1 to 10 do
+                begin
+                    write(m[i,j],' ');
+                end;
+                writeln;
+            end;
+        end
+        else
+        begin
+            for i:=1 to 10 do
+            begin
+                for j:=1 to 10 do
+                begin
+                    write(m[i,j],' ');
+                end;
+                writeln;
+            end;
+            writeln('Victoria!');
+        end;
+    end;
+    
+end.
