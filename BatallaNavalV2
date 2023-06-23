@@ -93,23 +93,32 @@ end;
 function hundido (var grid2:taArray; idBarco:char; a,b,lngt:integer):boolean;  {lngt: (longitud del barco)}
 
 var                      {esta función se fija, para un barco genérico, si le quedan piezas o si está totalmente hundido}
-    z:integer;
+    z,restos:integer;
 
 begin
     hundido:=false;
+    restos:=0;
     
     for z:=lngt downto 1 do
     begin                          
         if ((grid2[a,b-z] = idBarco) or (grid2[a,b+z] = idBarco)) then  
         begin                                      
             grid2[a,b]:='~';          
-            hundido:=false;                {estoy seguro de que esta solución genera un bug si hay dos cruceros o destructores a menos distancia que su longitud}
+            restos:=restos+1;              {estoy seguro de que esta solución genera un bug si hay dos cruceros o destructores a menos distancia que su longitud}
         end                                    {es un poco plomo por eso todavía no lo hice pero creo que se podría solucionar poniéndole un identificador}
         else                                    {distinto a cada crucero y a cada destructor(p.ej hacer el array de strings y llamarlos c1 y c2, etc)}
         begin
             grid2[a,b]:='~';
-            hundido:=true;
         end;
+    end;
+    
+    If (restos > 0) then
+    begin
+        hundido:=false;
+    end
+    else
+    begin
+        hundido:=true;
     end;
 end;
 
