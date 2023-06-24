@@ -65,10 +65,12 @@ begin
             begin
                 for k:=0 to (lgt-1) do
                 begin
-                    grid[i,j+k]:=id_barco;
-                    aux[i,j-(k+1)]:='x';    
+                    grid[i,j+k]:=id_barco;        {todo esto esta medio tosco, la idea es dejar bastante espacio de ambos lados para que no haya}
+                    aux[i,j-(k+1)]:='x';            {problemas de superposición de barcos ni de confusión entre distintos barcos del mismo tipo}
+                    aux[i,j-(k+2)]:='x';                    
                     aux[i,j+k]:='x';
-                    aux[i,j+(lgt-1)+(k+1)]:='x';  {esto era para dejar espacio de ambos lados y que otro barco no pise al que ya puse}
+                    aux[i,j+(lgt-1)+(k+1)]:='x';  
+                    aux[i,j+(lgt-1)+(k+2)]:='x';
                 end;
                 cant:=cant+1;
             end
@@ -78,8 +80,10 @@ begin
                 begin
                     grid[i,j-k]:=id_barco;
                     aux[i,j-(lgt-1)-(k+1)]:='x';
+                    aux[i,j-(lgt-1)-(k+2)]:='x';
                     aux[i,j-k]:='x';
                     aux[i,j+(k+1)]:='x';
+                    aux[i,j+(k+2)]:='x';
                 end;
                 cant:=cant+1;
             end;
@@ -105,8 +109,8 @@ begin
         begin                                      
             grid2[a,b]:='~';          
             restos:=restos+1;              {estoy seguro de que esta solución genera un bug si hay dos cruceros o destructores a menos distancia que su longitud}
-        end                                    {es un poco plomo por eso todavía no lo hice pero creo que se podría solucionar poniéndole un identificador}
-        else                                    {distinto a cada crucero y a cada destructor(p.ej hacer el array de strings y llamarlos c1 y c2, etc)}
+        end                                 {en este algoritmo lo solucioné (creo) separando bastante los barcos pero habría que encontrar una manera más piola}
+        else                                    
         begin
             grid2[a,b]:='~';
         end;
