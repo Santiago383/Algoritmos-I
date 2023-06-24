@@ -7,7 +7,7 @@ var
     m:taArray;
     m2:taArray;
     i,j,x,y:integer;
-    h, long, total:integer;
+    h, long:integer;
     id:char;
     
 {------------------------------------------}   
@@ -46,7 +46,7 @@ end;
     
 {------------------------------------------}    
 
-procedure cargarFlota (var grid:taArray; var aux:taArray; id_barco:char; lgt,tot:integer);  {lgt: (longitud del barco)}
+procedure cargarFlota (var grid:taArray; var aux:taArray; id_barco:char; lgt,total:integer);  {lgt: (longitud del barco)}
 
 var
     cant,k:integer;  {este proc. hace lo mismo que mi razonamiento original, sólo que de forma genérica}
@@ -54,7 +54,7 @@ var
 begin
     cant:=0;
     
-    while (cant < tot) do
+    while (cant < total) do
     begin
         randomize;
         i:=random(10)+1;
@@ -148,23 +148,19 @@ begin
     
     id:='a';                            {acá cargamos la grilla usando el procedimiento cargarFlota}
     long:=longitud(id);
-    total:=1;
-    cargarFlota(m, m2, id, long, total);
+    cargarFlota(m, m2, id, long, 1);
     
     id:='c';
     long:=longitud(id);
-    total:=2;
-    cargarFlota(m, m2, id, long, total);
+    cargarFlota(m, m2, id, long, 2);
     
     id:='d';
     long:=longitud(id);
-    total:=3;
-    cargarFlota(m, m2, id, long, total);
+    cargarFlota(m, m2, id, long, 3);
     
     id:='s';
     long:=longitud(id);
-    total:=4;
-    cargarFlota(m, m2, id, long, total);
+    cargarFlota(m, m2, id, long, 4);
     
     for i:=1 to 10 do
     begin
